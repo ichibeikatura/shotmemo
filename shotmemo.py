@@ -13,6 +13,7 @@
 import argparse
 import os
 import re
+import shutil
 import subprocess
 import sys
 from datetime import datetime
@@ -33,6 +34,8 @@ CHROMIUM_IDS = {
     "company.thebrowser.Browser",  # Arc
 }
 PREVIEW_ID = "com.apple.Preview"
+# Karabiner の shell_command は PATH に /opt/homebrew/bin を含まない
+EXIFTOOL = shutil.which("exiftool") or "/opt/homebrew/bin/exiftool"
 
 
 def log(msg: str):
@@ -211,13 +214,16 @@ def build_comment(ctx: dict) -> str:
 # === 書き込み ===
 def write_comment(path: Path, comment: str):
     # exiftool は in_place で書き換えるとファイルの xattr を残す。Finder コメントより先に書く
-    r = subprocess.run(
-        ["exiftool", "-q", "-overwrite_original_in_place",
-         f"-UserComment={comment.replace(chr(10), ' ')}", str(path)],
-        capture_output=True, text=True,
-    )
-    if r.returncode != 0:
-        log(f"exiftool: {r.stderr.strip()}")
+    try:
+        r = subprocess.run(
+            [EXIFTOOL, "-q", "-overwrite_original_in_place",
+             f"-UserComment={comment.replace(chr(10), ' ')}", str(path)],
+            capture_output=True, text=True,
+        )
+        if r.returncode != 0:
+            log(f"exiftool: {r.stderr.strip()}")
+    except OSError as e:  # exiftool が無くても Finder コメントは書く
+        log(f"exiftool: {e}")
     # Finder のコメント欄は .DS_Store を見るので、xattr ではなく Finder 経由で書く
     osascript(
         f"tell application \"Finder\" to set comment of (POSIX file {as_str(str(path))} as alias)"
@@ -249,9 +255,9 @@ def main():
     if not path.exists():  # Esc でキャンセル
         return
     comment = build_comment(ctx)
+    log(f"{path.name}: {comment!r}")
     if comment:
         write_comment(path, comment)
-    log(f"{path.name}: {comment!r}")
 
 
 if __name__ == "__main__":
