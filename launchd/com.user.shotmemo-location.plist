@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.user.shotmemo-location</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/mck/.pyenv/versions/3.10.9/bin/python3</string>
+        <string>/Users/mck/Documents/github/shotmemo/shotmemo.py</string>
+        <string>--update-location</string>
+    </array>
+    <!-- 1月1日 0:01。スリープ中だった分は復帰時に走る。電源オフ中の分はログイン時の RunAtLoad で拾う -->
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Month</key>
+        <integer>1</integer>
+        <key>Day</key>
+        <integer>1</integer>
+        <key>Hour</key>
+        <integer>0</integer>
+        <key>Minute</key>
+        <integer>1</integer>
+    </dict>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>StandardErrorPath</key>
+    <string>/tmp/shotmemo.log</string>
+</dict>
+</plist>

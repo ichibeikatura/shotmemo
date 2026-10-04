@@ -1,0 +1,22 @@
+{
+    "description": "shotmemo (Cmd+Shift+4 -> 範囲スクショ＋開いているものをコメントに)",
+    "manipulators": [
+        {
+            "type": "basic",
+            "from": {
+                "key_code": "4",
+                "modifiers": {
+                    "mandatory": [
+                        "shift",
+                        "command"
+                    ]
+                }
+            },
+            "to": [
+                {
+                    "shell_command": "/Users/mck/.pyenv/versions/3.10.9/bin/python3 /Users/mck/Documents/github/shotmemo/shotmemo.py >> /tmp/shotmemo.log 2>&1"
+                }
+            ]
+        }
+    ]
+}
