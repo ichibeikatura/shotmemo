@@ -6,8 +6,8 @@
     <string>com.user.shotmemo-location</string>
     <key>ProgramArguments</key>
     <array>
-        <string>/Users/mck/.pyenv/versions/3.10.9/bin/python3</string>
-        <string>/Users/mck/Documents/github/shotmemo/shotmemo.py</string>
+        <string>/Users/YOU/.pyenv/versions/3.10.9/bin/python3</string>
+        <string>/Users/YOU/Documents/github/shotmemo/shotmemo.py</string>
         <string>--update-location</string>
     </array>
     <!-- 1月1日 0:01。スリープ中だった分は復帰時に走る。電源オフ中の分はログイン時の RunAtLoad で拾う -->

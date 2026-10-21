@@ -14,7 +14,7 @@
             },
             "to": [
                 {
-                    "shell_command": "/Users/mck/.pyenv/versions/3.10.9/bin/python3 /Users/mck/Documents/github/shotmemo/shotmemo.py >> /tmp/shotmemo.log 2>&1"
+                    "shell_command": "/Users/YOU/.pyenv/versions/3.10.9/bin/python3 /Users/YOU/Documents/github/shotmemo/shotmemo.py >> /tmp/shotmemo.log 2>&1"
                 }
             ]
         }

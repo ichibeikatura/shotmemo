@@ -26,6 +26,7 @@ macOS で範囲指定のスクリーンショットを撮り、そのとき開�
 
 ## セットアップ
 
+- `karabiner-rule.json` と `launchd/com.user.shotmemo-location.plist` の `/Users/YOU/...` は、自分の Python とこのリポジトリを置いた場所のパスに直す
 - Karabiner: `karabiner-rule.json` のルール（全アプリで Cmd+Shift+4）を `~/.config/karabiner/karabiner.json` に足す
 - launchd: `launchd/com.user.shotmemo-location.plist` を `~/Library/LaunchAgents/` にコピーし、
   `launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.user.shotmemo-location.plist`
