@@ -15,7 +15,7 @@ macOS で範囲指定のスクリーンショットを撮り、そのとき開�
 | 書類を開いているほかのアプリ（プレビューを含む） | ファイル名 + パス |
 | 上記以外 | `アプリ名: ウィンドウ名` |
 
-- ndl-tools（`$NDL_TOOLS_DIR`、既定は `~/Documents/github/ndl-tools`）を読み込めないときは、NDL のページもタイトル + URL だけになる。
+- [ndl-tools](https://github.com/ichibeikatura/ndl-tools)（`$NDL_TOOLS_DIR`、既定は `~/Documents/github/ndl-tools`）を読み込めないときは、NDL のページもタイトル + URL だけになる。
 - プレビューの書類やほかのアプリのウィンドウ名を読むにはアクセシビリティ権限が要る（Karabiner に付与済み）。
 
 ## 保存先
@@ -39,3 +39,7 @@ macOS で範囲指定のスクリーンショットを撮り、そのとき開�
   同じ理由で、`mv` で移したファイルは Finder 上のコメントが見えなくなる。`tools/move_by_year.py` は移動後にコメントを書き直す。
 - exiftool は `-overwrite_original_in_place` で書き換える（`-overwrite_original` だと xattr が消える）。
 - `tools/move_by_year.py SRC_DIR [--apply]` はファイル名の年でフォルダに振り分ける（`--apply` なしなら一覧を出すだけ）。
+
+## ライセンス
+
+MIT
