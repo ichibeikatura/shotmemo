@@ -18,7 +18,7 @@ import subprocess
 import sys
 from datetime import datetime
 from pathlib import Path
-from urllib.parse import unquote
+from urllib.parse import unquote, urlparse
 
 SCREENSHOT_ROOT = Path.home() / "Pictures" / "ScreenShot"
 NDL_TOOLS_DIR = Path(
@@ -198,7 +198,11 @@ def gather_context() -> dict:
 def build_comment(ctx: dict) -> str:
     """1行目に見出し（書誌・タイトル・ファイル名）、2行目に URL かパス。"""
     if ctx["url"]:
-        head = ndl_biblio(ctx["url"]) or ctx["title"]
+        title = ctx["title"]
+        # PDF を直接開いたタブはタイトルが URL そのものになるので、ファイル名にする
+        if not title or title == ctx["url"]:
+            title = unquote(urlparse(ctx["url"]).path.rstrip("/").rpartition("/")[2])
+        head = ndl_biblio(ctx["url"]) or title
         return "\n".join(s for s in (head, ctx["url"]) if s)
     if ctx["path"]:
         p = Path(ctx["path"])
